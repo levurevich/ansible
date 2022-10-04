@@ -13,7 +13,7 @@
            - name: Add public key
              copy:
                      src: "{{ item }}"
-                     dest: "{{ path-public-key }}"
+                     dest: "{{ path-public-key }}/{{ item }}"
                      owner: user
                      mode: 0644
              with_fileglob:
