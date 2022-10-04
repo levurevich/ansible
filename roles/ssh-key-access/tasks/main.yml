@@ -1,0 +1,24 @@
+---
+ - hosts: all
+   become: true
+   vars:
+
+   tasks:
+           - name: Update apt
+             apt: update_cache=yes
+
+           - name: Install openssh-server
+             apt: name=openssh-server state=latest
+
+           - name: Add public key
+             copy:
+                     src: "{{ item }}"
+                     dest: "{{ path-public-key }}"
+                     owner: user
+                     mode: 0644
+             with_fileglob:
+                     - files/*
+             notify:
+                     - restart openssh server
+ 
+
