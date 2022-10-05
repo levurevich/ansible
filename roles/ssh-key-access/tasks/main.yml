@@ -4,20 +4,20 @@
 #   vars:
 
 - name: Update apt cache
-        apt: update_cache=yes
+  apt: update_cache=yes
 
 - name: Install openssh-server
-        apt: name=openssh-server state=latest
+  apt: name=openssh-server state=latest
 
 - name: Add public key
-        copy:
-                src: "{{ item }}"
-                dest: "{{ path-public-key }}/{{ item }}"
-                owner: user
-                mode: 0644
-        with_fileglob:
-                - files/*
-        notify:
-                - restart openssh server
+  copy:
+    src: "{{ item }}"
+    dest: "{{ path-public-key }}/{{ item }}"
+    owner: user
+    mode: 0644
+  with_fileglob:
+    - files/*
+  notify:
+    - restart openssh server
  
 
