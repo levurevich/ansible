@@ -1,5 +1,5 @@
 ---
 - name: Install Python
-  raw: test -e /usr/bin/apt && (apt -y update && apt install -y python-minimal) || (yum -y install python libselinux-python)
+  raw: test -e /usr/bin/apt && (apt -y update && apt install -y python) || (yum -y install python)
 
 
