@@ -1,3 +1,0 @@
-test_public_key_config:
-- ubuntu:
-  path: "~/.ssh/"
