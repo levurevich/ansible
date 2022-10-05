@@ -11,12 +11,12 @@
 
 - name: Add public key
   copy:
-    src: "{{ item }}"
-    dest: "{{ path-public-key }}/{{ item }}"
+    src: files/authorized_keys #"{{ item }}"
+    dest: /home/user/.ssh/authorized_keys #"{{ path-public-key }}/{{ item }}"
     owner: user
     mode: 0644
-  with_fileglob:
-    - files/*
+#  with_fileglob:
+#    - files/*
   notify:
     - restart openssh server
  
