@@ -17,11 +17,7 @@ tasks:
                         mode: 0644
                 with_fileglob:
                         - files/*
-<<<<<<< HEAD
                 notify:
-=======
-                notify:                       
->>>>>>> 7b7f8285496e359ed51446dd1429dab04f365aa7
                         - restart openssh server
  
 
