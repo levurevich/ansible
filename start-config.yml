@@ -1,9 +1,5 @@
 ---
 - hosts: workers
-  gather_facts: false
-  vars:
-    ansible_python_interpreter: ~/ansible-tuto/bin/python
-#  become: true
+  become: true
   roles:
-    - python-raw-install
     - ssh-key-access
