@@ -21,13 +21,14 @@
   community.general.parted:
     device: "{{ jenkins_disk_device }}"
     number: 1
-    flags: [lvm]
+    flags: [ lvm ]
     state: present
+    fs_type: xfs
 
-- name: FS to new partition
-  filesystem:
-    fstype: xfs
-    dev: /dev/sdb1
+#- name: FS to new partition
+#  filesystem:
+#    fstype: xfs
+#    dev: /dev/sdb1
 
 - name: mount new point
   ansible.posix.mount:
@@ -35,11 +36,6 @@
     src: /dev/sdb1
     path: /jkfs
     state: mounted
-
-- name: install openjdk
-  yum:
-    name: java-11-openjdk
-    state: present
 
 - name: download jenkins.repo
   get_url:

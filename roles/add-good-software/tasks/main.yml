@@ -2,10 +2,8 @@
 
 - name: Install software
   apt: name="{{ item }}" state=latest
-  loop: 
-    - wget
-    - vim
-    - mc
+  loop: "{{ pkgs }}"
+
 
 - name: Configurate vim
   copy:

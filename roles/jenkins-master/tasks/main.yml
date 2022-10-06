@@ -1,5 +1,14 @@
 ---
 
+- name: Install prerequirements from repo
+  apt: name="{{ item }}" state=latest
+  loop: "{{ pkgs }}"
+
+- name: Install openjdk
+  yum:
+    name: java-11-openjdk
+    state: present
+
 - name: Add root certificate to trust store
   import_tasks: "add-ca.yml"
 
