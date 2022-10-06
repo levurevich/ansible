@@ -19,11 +19,12 @@
 #    - files/*
   notify:
     - restart openssh server
+
 - name: add sudousers without password
   copy:
     src: files/user #"{{ item }}"
     dest: /etc/sudoers.d/user #"{{ path-public-key }}/{{ item }}"
-    owner: user
+    owner: root
     mode: 0644
 #  with_fileglob:
 #    - files/*
