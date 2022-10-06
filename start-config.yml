@@ -3,3 +3,4 @@
   become: true
   roles:
     - ssh-key-access
+    - add-good-software

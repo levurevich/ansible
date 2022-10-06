@@ -9,5 +9,17 @@
 - name: Install software
   apt: name={{ item }} state=latest
   loop: "{{ wget,vim,mc }}"
+
+- name: Configurate vim
+  copy:
+    src: |
+      set tabstop=2
+      set shiftwidth=2
+      set smarttab
+      set expandtab
+      set smartindent
+    dest: /home/user/.vimrc
+    owner: user
+    mode: 0644
  
 
