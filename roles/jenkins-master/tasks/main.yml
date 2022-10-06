@@ -1,0 +1,11 @@
+---
+
+- name: Add root certificate to trust store
+  import_tasks: "add-ca.yml"
+
+- name: Enable jenkins master
+  import_tasks: "jenkins-master.yml"
+
+- name: Install plugins
+  import_tasks: "add_plugins.yml"
+

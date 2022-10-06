@@ -1,0 +1,22 @@
+---
+# defaults file for jenkins_slave
+tmp_path: /tmp 
+ca_trust_dir: /etc/pki/ca-trust/source/anchors
+
+pkgs: # list - пакеты, которые необходимо установить из реп
+  - ca-certificates
+  - python2-pip
+  - python3-pip
+
+# параметры для пользователя jenkins
+jenkins_user: jenkins # пользователь для агента
+jenkins_group: jenkins # группа для агента
+jenkins_disk_device: /dev/sdb
+jenkins_local_fs: /jkfs/jenkins # путь для агента
+jenkins_service_config: /usr/lib/systemd/system/jenkins.service
+jenkins_plugins_dir: /jkfs/jenkins/plugins
+jenkins_ssh_key: | # публичный ключ для подключения к агенту
+  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDCifXDsgYchsYEri8ZVdd8rgv6Ozm0Tz+0BHx7om6mJJuhOh+OjCnGWm5/Wcya1nhasR1jPKPHwyYAqOd/GvCrcrChLuZZtHPpzQ6Fpc269t0xF3c3hG83fu2ka//3dsXHAE640EyivYeH4dPZ75NvCwMgVfnjjLENfcrPEmOYgo/YpJDSYuQsr2EB89SCwe8GNhUdpQsSTMtjtShxaHQDBIJX6Cg4+1tfrHTa+p0g88wF1gGIEZBEVQAUrCnYkgWXYj8CWbauX62WRwnVhGU3kifJGhECxNtAJ+bVQSO48Cu7SSP4cpIJzOChGtb+bq18Ms3euomH2kPwtiX9JA/d+kagdPMpRPNyRPT6qmYVXQxMZlbfIDXrkgX2h8TVpgOfgeWnvSOBYa+gS9rdkQc8qmga5BW/9g/UA9EOfLu0kMj9ogCl7FW+ou1ll5Y7cz9yvQXnC5DvRLXNfF9AbcVHvlw+vI2JpGmQk6DyZluB+a6DYNWPKwRUYIaeLVcMU38= Melentev.LYu@PAO-PF15D0AE
+  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDdUxfw4DVDjMrizUheGSJEXxDTUUk04CisT6qR3HkNf0zIbqKKMeXMLevua9pjCCSzRJS0OhKMXQhXPCvcHUD7/Mhg9M5wel283VJWiT3OkTFXRlUxfAY2TA48VIor16vJdlYKAJAZE1i6R1zO+Ka8OLaPaT78VHeHsG97UqtuZxpOmr5TXAr3aKI/rtOT6g2FfeEM9ExZjOsIdjppd7sTdKlasxPBABofmixDcTdOnic5llbqDHTHIm4NXtBo70rZXLq7ecsbEKEU5zRfuu3atgmSJX6MW1rSHHBnHpjdlnAqY+VqRbYoR1MQkL6rzzzsFYbtgTloTRk39xl+cV8sc7yQmHed6otSA/cIP1h3HmLnvwOGib+elmL/PrKhGaRSlttK4wuE0f+Hhn28XvYIiSkZDNyVkICP5NgZOhLNGboUK2EV+qinASqu17xkblAsMDomzz/Fr0t4z/ML/c68B/bYQHjmNMVbZ544oqjL7Ed3ti9AcN+2XDFRn4sMsGro9ykGvwtSWLThMze7b0dxQfeHGt2DQ2/tH2uHZeh2nBVrsYnsndy7C1j0mzHeEYL3hnWVFPUdvMF6fe4VzfgYQqAYVz0/Md9IZ7aXh16UKpcP6dbnpSmRWKMURaBViA3zkw61YDyvHEdsFpUjaDvsYGyMmahviPX8TnnQtfsmMQ== lmelentev@live.ru
+
+

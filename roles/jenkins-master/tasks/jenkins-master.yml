@@ -1,0 +1,121 @@
+---
+- name: Add jenkins group
+  group:
+    name: "{{ jenkins_group }}"
+    state: present
+
+- name: Add jenkins user
+  user:
+    name: "{{ jenkins_user }}"
+    groups: "{{ jenkins_group }}"
+    append: yes
+    system: yes
+
+- name: Enable sudo for jenkins user
+  template:
+    src: jenkins.sudo.j2
+    dest: /etc/sudoers.d/jenkins
+    mode: 0440
+
+- name: Make disk partition FS for lsync
+  community.general.parted:
+    device: "{{ jenkins_disk_device }}"
+    number: 1
+    flags: [lvm]
+    state: present
+
+- name: FS to new partition
+  filesystem:
+    fstype: xfs
+    dev: /dev/sdb1
+
+- name: mount new point
+  ansible.posix.mount:
+    fstype: xfs
+    src: /dev/sdb1
+    path: /jkfs
+    state: mounted
+
+- name: install openjdk
+  yum:
+    name: java-11-openjdk
+    state: present
+
+- name: download jenkins.repo
+  get_url:
+    url: https://pkg.jenkins.io/redhat-stable/jenkins.repo
+    dest: /etc/yum.repos.d/jenkins.repo
+
+- name: import jenkins key
+  rpm_key:
+    state: present
+    key: https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+
+- name: install jenkins
+  yum:
+    name: jenkins
+    state: present
+
+- name: start jenkins
+  become: true
+  become_user: root
+  systemd:
+    name: jenkins.service
+    daemon_reload: yes
+    enabled: yes
+    state: started
+  register: result
+
+- debug: msg="{{ result }}"
+
+- name: enable jenkins
+  systemd:
+    name: jenkins
+    enabled: true
+
+- name: move jenkins to new workdir
+  copy:
+    src: /var/lib/jenkins
+    dest: "{{ jenkins_local_fs }}"
+    owner: "{{ jenkins_user }}"
+    group: "{{ jenkins_group }}"
+
+#- name: add jenkins admin user config
+#  copy:
+#    src: files/users/admin_user.xml
+#    dest: "{{ jenkins_local_fs }}/users/dsoadmin_5615247328173417926/config.xml"
+#    owner: "{{ jenkins_user }}"
+#    group: "{{ jenkins_group }}"
+
+#- name: add user file xml
+#  copy:
+#    src: files/users/users.xml
+#    dest: "{{ jenkins_local_fs }}/users/users.xml"
+#    owner: "{{ jenkins_user }}"
+#    group: "{{ jenkins_group }}"
+
+- name: override jenkins service config
+  copy:
+    src: files/jenkins_unit_config
+    dest: "{{ jenkins_service_config }}"
+    owner: "{{ jenkins_user }}"
+    group: "{{ jenkins_group }}"
+    mode: 0644
+  notify:
+  - default jenkins config changed
+
+- name: change owner for jenkins home dir
+  file:
+    path: "{{ jenkins_local_fs }}"
+    state: directory
+    recurse: yes
+    owner: "{{ jenkins_user }}"
+    group: "{{ jenkins_group }}"
+  notify:
+    - Jenkins restart
+
+- name: Copy ssh key
+  authorized_key:
+    user: "{{ jenkins_user }}"
+    key: "{{ jenkins_ssh_key }}"
+

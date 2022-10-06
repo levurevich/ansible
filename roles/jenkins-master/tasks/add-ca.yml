@@ -1,0 +1,13 @@
+---
+- name: Add ca certificates
+  copy:
+    src: "{{ item }}"
+    dest: "{{ ca_trust_dir }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_fileglob:
+  - files/ca/*
+  notify:
+  - update trusted ca
+

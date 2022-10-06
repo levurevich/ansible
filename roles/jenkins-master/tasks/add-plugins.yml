@@ -1,0 +1,28 @@
+--- 
+- name: Add list of plugins to remote host
+  copy:
+    src: files/plugins/list_of_plugins.txt
+    dest: "{{ jenkins_local_fs }}/list_of_plugins.txt"
+    owner: "{{ jenkins_user }}"
+    group: "{{ jenkins_group }}"
+    mode: 0644
+
+- name: download plugin manager tool
+  get_url:
+    url: https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.12.9/jenkins-plugin-manager-2.12.9.jar
+    dest: /jkfs/jenkins-plugin-manager-2.12.9.jar
+
+# Install/update Jenkins plugins
+# Add for proxy -Dhttps.proxyHost=10.XX.32.XX -Dhttps.proxyPort=3128 -Dhttp.proxyHost=10.XX.32.XX -Dhttp.proxyPort=3128
+- name: Install plugins
+  command: java  -jar /jkfs/jenkins-plugin-manager-2.12.9.jar --war /usr/share/java/jenkins.war --plugin-file "{{ jenkins_local_fs }}"/list_of_plugins.txt --plugin-download-directory "{{ jenkins_local_fs }}"/plugins
+
+- name: change owner for installed plugins
+  file:
+    path: "{{ jenkins_local_fs }}/plugins"
+    state: directory
+    recurse: yes
+    owner: "{{ jenkins_user }}"
+    group: "{{ jenkins_group }}"
+  notify:
+    - Jenkins restart

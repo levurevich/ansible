@@ -1,0 +1,15 @@
+---
+# handlers file for jenkins_master
+- name: update trusted ca
+  command: /bin/update-ca-trust
+
+- name: default jenkins config changed
+  systemd:
+    daemon_reload: yes
+
+- name: Jenkins restart
+  become: true
+  become_user: root
+  systemd:
+    name: jenkins.service
+    state: restarted
