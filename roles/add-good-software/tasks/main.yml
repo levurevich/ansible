@@ -9,7 +9,7 @@
 
 - name: Configurate vim
   copy:
-    src: |
+    content: |
       set tabstop=2
       set shiftwidth=2
       set smarttab
