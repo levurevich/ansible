@@ -5,7 +5,6 @@ ca_trust_dir: /etc/pki/ca-trust/source/anchors
 
 pkgs: # list - пакеты, которые необходимо установить из реп
   - ca-certificates
-  - python2-pip
   - python3-pip
 
 # параметры для пользователя jenkins
