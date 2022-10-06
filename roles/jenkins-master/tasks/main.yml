@@ -4,8 +4,8 @@
   loop: "{{ pkgs }}"
 
 - name: Install openjdk
-  apt: java-11-openjdk
-  state: present
+  apt: name=openjdk-11-jdk state=latest
+# state: present
 
 - name: Add root certificate to trust store
   import_tasks: "add-ca.yml"
