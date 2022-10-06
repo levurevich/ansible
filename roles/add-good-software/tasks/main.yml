@@ -1,14 +1,8 @@
 ---
-# - hosts: all
-#   become: true
-#   vars:
-
-- name: Update apt cache
-  apt: update_cache=yes
 
 - name: Install software
   apt: name={{ item }} state=latest
-  loop: "{{ wget,vim,mc }}"
+  loop: "{{ [wget,vim,mc] }}"
 
 - name: Configurate vim
   copy:
