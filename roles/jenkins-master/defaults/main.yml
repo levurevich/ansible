@@ -1,11 +1,12 @@
 ---
 # defaults file for jenkins_slave
 tmp_path: /tmp 
-ca_trust_dir: /etc/pki/ca-trust/source/anchors
+ca_trust_dir: /home/user
 
 pkgs: # list - пакеты, которые необходимо установить из реп
   - ca-certificates
   - python3-pip
+  - openjdk-11-jdk
 
 # параметры для пользователя jenkins
 jenkins_user: jenkins # пользователь для агента
