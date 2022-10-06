@@ -1,1 +1,3 @@
+---
 path_public_key: "/home/user/.ssh/"
+openssh_server: "sshd"
