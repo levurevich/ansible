@@ -1,5 +1,4 @@
 ---
-
 - name: Install prerequirements from repo
   apt: name="{{ item }}" state=latest
   loop: "{{ pkgs }}"
@@ -16,5 +15,5 @@
   import_tasks: "jenkins-master.yml"
 
 - name: Install plugins
-  import_tasks: "add_plugins.yml"
+  import_tasks: "add-plugins.yml"
 
