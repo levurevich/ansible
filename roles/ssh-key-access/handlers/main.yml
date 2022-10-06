@@ -1,0 +1,4 @@
+- name: restart openssh server
+  service:
+    name: "{{ openssh_server }}"
+    state: reloaded
