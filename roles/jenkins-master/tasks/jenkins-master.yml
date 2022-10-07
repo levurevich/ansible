@@ -74,6 +74,7 @@
     dest: "{{ jenkins_local_fs }}"
     owner: "{{ jenkins_user }}"
     group: "{{ jenkins_group }}"
+    remote_src: yes
 
 #- name: add jenkins admin user config
 #  copy:
