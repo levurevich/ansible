@@ -39,7 +39,7 @@
 - name: import jenkins key
   apt_key:
     state: present
-    key: https://pkg.jenkins.io/debian-stable/jenkins.io.key
+    url: https://pkg.jenkins.io/debian-stable/jenkins.io.key
 
 - name: add jenkins.repo
   apt_repository:
