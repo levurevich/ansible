@@ -3,3 +3,4 @@ pkgs: # list of good software
     - wget
     - vim
     - mc
+    - mkfs
