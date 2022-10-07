@@ -9,6 +9,7 @@ pkgs: # list - пакеты, которые необходимо установ�
   - openjdk-11-jdk
 
 # параметры для пользователя jenkins
+jenkins_version: latest
 jenkins_user: jenkins # пользователь для агента
 jenkins_group: jenkins # группа для агента
 jenkins_disk_device: /dev/sdb
