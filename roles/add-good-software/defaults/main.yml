@@ -4,3 +4,4 @@ pkgs: # list of good software
     - vim
     - mc
     - xfsprogs
+    - curl
