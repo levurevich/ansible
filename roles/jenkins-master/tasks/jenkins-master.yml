@@ -48,7 +48,7 @@
 
 - name: install jenkins
   apt:
-    name: name=jenkins state={{ jenkins_version }}
+    name: jenkins
     state: present
 
 - name: start jenkins
