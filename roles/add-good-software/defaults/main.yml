@@ -5,3 +5,4 @@ pkgs: # list of good software
     - mc
     - xfsprogs
     - curl
+    - git
