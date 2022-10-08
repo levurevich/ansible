@@ -20,6 +20,6 @@
   community.general.github_key: 
     name: Access Key for {{ ansible_facts['nodename'] }}
     token: "{{ gh_token.stdout }}"
-    pubkey: "{{ ssh_pub_key_gh }}"
+    pubkey: "{{ ssh_pub_key_gh.public_key }}"
  
 
