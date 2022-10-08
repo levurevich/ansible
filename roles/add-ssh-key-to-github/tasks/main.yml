@@ -12,8 +12,8 @@
 - name: debug
   debug:
     msg:
-    - "ssh_pub_key_gh : {{ ssh_pub_key_gh }}"
-    - "gh_token: {{ gh_token }}"
+    - "ssh_pub_key_gh : {{ ssh_pub_key_gh.public_key }}"
+    - "gh_token: {{ gh_token.stdout }}"
     - "ansible_facts: {{ ansible_facts['nodename'] }}"
 
 - name: Authorize key with GitHub
