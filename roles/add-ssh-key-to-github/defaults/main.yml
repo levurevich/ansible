@@ -1,0 +1,8 @@
+---
+pkgs: # list of good software
+    - wget
+    - vim
+    - mc
+    - xfsprogs
+    - curl
+    - git

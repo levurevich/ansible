@@ -1,0 +1,28 @@
+---
+- name: Generate openssh key pair for access to Github
+  openssh_keypair:
+    path: /home/jenkins/.ssh/id_rsa_gh
+    register: ssh_pub_key_gh
+#- name: Read ssh public key to authorize
+#  shell: cat /home/jenkins/.ssh/id_rsa.pub
+#  register: ssh_pub_key
+
+- name: Read Github token to authorize
+  local_action: 
+    shell: cat  /home/lev/ansible-tuto/secret
+    register: gh_token
+
+- name: debug
+  debug:
+    msg:
+    - "ssh_pub_key_gh : {{ ssh_pub_key_gh }}"
+    - "gh_token: {{ gh_token }}"
+    - "ansible_facts: {{ ansible_facts['nodename'] }}"
+
+- name: Authorize key with GitHub
+  community.general.github_key: 
+    name: Access Key for {{ ansible_facts['nodename'] }}
+    token: '{{ gh_token.stdout }}'
+    pubkey: '{{ ssh_pub_key_gh }}'
+ 
+
