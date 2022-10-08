@@ -3,12 +3,12 @@
 - name: Generate openssh key pair for access to Github
   openssh_keypair:
     path: "/home/jenkins/.ssh/id_rsa_gh"
-    register: ssh_pub_key_gh
+  register: ssh_pub_key_gh
 
 - name: Read Github token to authorize
   local_action: 
     shell: cat /home/lev/ansible-tuto/secret
-    register: gh_token
+  register: gh_token
 
 - name: debug
   debug:
