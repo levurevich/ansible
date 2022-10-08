@@ -1,4 +1,5 @@
 ---
+user: user
 pkgs: # list of good software
     - wget
     - vim
