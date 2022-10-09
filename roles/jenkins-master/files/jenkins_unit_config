@@ -58,7 +58,7 @@ Environment="JENKINS_WEBROOT=%C/jenkins/war"
 #Environment="JENKINS_JAVA_CMD=/etc/alternatives/java"
 
 # Arguments for the Jenkins JVM
-Environment="JAVA_OPTS=-XX:+UseG1GC -Xms1g -Xmx1g -DCredentialsProvider.fingerprintEnabled=false -Djava.awt.headless=true -Dhudson.model.DirectoryBrowserSupport.CSP=\"default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; script-src-elem 'self' 'unsafe-inline';\""
+Environment="JAVA_OPTS=-XX:+UseG1GC -Xms2g -Xmx2g -DCredentialsProvider.fingerprintEnabled=false -Djava.awt.headless=true -Dhudson.model.DirectoryBrowserSupport.CSP=\"default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; script-src-elem 'self' 'unsafe-inline';\""
 
 # IP address to listen on for HTTP requests.
 # The default is to listen on all interfaces (0.0.0.0).
