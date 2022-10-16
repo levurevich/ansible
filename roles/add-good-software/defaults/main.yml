@@ -6,3 +6,4 @@ pkgs: # list of good software
     - xfsprogs
     - curl
     - git
+    - htop
