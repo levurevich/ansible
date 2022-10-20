@@ -8,3 +8,4 @@ pkgs: # list of good software
     - git
     - htop
     - sysstat
+    - lvm2
