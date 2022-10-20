@@ -7,3 +7,4 @@ pkgs: # list of good software
     - curl
     - git
     - htop
+    - sysstat
